@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 
-<div class="jumbotron jumbotron-fluid">
+<div class="jumbotron jumbotron-fluid pb-0">
   <div class="container">
     <div class="row">
       <div class="col-md text-md-left text-center">
