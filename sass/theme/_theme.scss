@@ -1,1 +1,93 @@
 // This is an empty scss file for your custom styles - Please add your super duper awesome mega design styles here
+
+.custom-logo-link {
+  width: 72px;
+  padding: 0;
+}
+
+.modal-body {
+  padding: 0;
+}
+
+.modal-dialog {
+  top: 10%;
+  max-width: 70%;
+}
+
+.close {
+  font-size: 2rem;
+  opacity: unset;
+  color: $primary;
+  text-shadow: 0 1px 0 #111111;
+}
+
+.modal-header {
+  padding: 0;
+  border-bottom: none;
+}
+
+.modal-content {
+  background-color: unset;
+  border: none;
+}
+
+.login a {
+  color: white !important;
+  background-color: transparent;
+  margin-left: 10px;
+  border-radius: 5px;
+  border: 2px solid white;
+}
+.login a:hover {
+  color: black !important;
+  background-color: white;
+  margin-left: 10px;
+  border-radius: 5px;
+  border: 2px solid white;
+}
+
+.signup a {
+  color: white !important;
+  background: black;
+  margin-left: 10px;
+  border-radius: 5px;
+  border: 2px solid $primary;
+}
+.signup a:hover {
+  color: white !important;
+  background: $primary;
+  margin-left: 10px;
+  border-radius: 5px;
+  border: 2px solid $primary;
+}
+
+.jumbotron {
+  padding-bottom: 0;
+}
+
+.floating-img {
+  // padding-top: 3rem;
+  bottom: 0px;
+  // position: absolute;
+}
+
+.floating-img-container {
+  align-self: flex-end;
+}
+
+@media (max-width: 768px) {
+  .floating-img {
+    padding-top: 3rem;
+  }
+  .modal-dialog {
+    top: 25%;
+    max-width: 95%;
+  }
+}
+
+@include media-breakpoint-down(md) {
+  html {
+    font-size: .7rem;
+  }
+}
+
