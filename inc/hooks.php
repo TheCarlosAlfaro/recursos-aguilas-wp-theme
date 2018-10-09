@@ -28,11 +28,11 @@ if ( ! function_exists( 'understrap_add_site_info' ) ) {
     $the_theme = wp_get_theme();
     
     $site_info = sprintf(
-      '<a href="%1$s">%2$s</a><span class="sep"> | </span>%3$s(%4$s)',
-      esc_url( __( 'http://wordpress.org/', 'understrap' ) ),
+      '<a href="%1$s" target="_blank">%2$s</a>',
+      esc_url( __( 'http://www.aguilascfc.org/', 'understrap' ) ),
       sprintf(
         /* translators:*/
-        esc_html__( 'Proudly powered by %s', 'understrap' ), 'WordPress'
+        esc_html__( '© Copyright 2018 Aguilas Centro Familiar Cristiano %s', 'understrap' ), ''
       ),
       sprintf( // WPCS: XSS ok.
         /* translators:*/
