@@ -23,7 +23,7 @@ if ( ! function_exists( 'understrap_scripts' ) ) {
 
 		wp_enqueue_script( 'jquery');
 
-		wp_enqueue_script( 'live-search', get_template_directory_uri() . '/js/custom-javascript.js', array('jquery'), null, true );
+		wp_enqueue_script( 'live-search', get_template_directory_uri() . '/js/custom-javascript.js', array(), null, true );
 		
 		$js_version = $theme_version . '.' . filemtime(get_template_directory() . '/js/theme.min.js');
 		wp_enqueue_script( 'understrap-scripts', get_template_directory_uri() . '/js/theme.min.js', array(), $js_version, true );

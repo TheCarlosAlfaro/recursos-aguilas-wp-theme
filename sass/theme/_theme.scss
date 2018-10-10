@@ -38,7 +38,7 @@ body.admin-bar nav {
   border: none;
 }
 
-.login a {
+.login a, .mepr-share-button {
   color: black !important;
   background-color: transparent;
   margin-left: 10px;
@@ -46,11 +46,11 @@ body.admin-bar nav {
   border: 2px solid black;
 }
 
-.navbar-expand-md .navbar-nav .nav-link {
+.navbar-expand-md .navbar-nav .nav-link, .mepr-share-button, .mepr-submit {
   padding: .5rem 1rem;
 }
 
-.login a:hover {
+.login a:hover, .mepr-share-button:hover {
   color: white !important;
   background-color: black;
   margin-left: 10px;
@@ -58,14 +58,14 @@ body.admin-bar nav {
   border: 2px solid black;
 }
 
-.signup a {
+.signup a, .mepr-submit {
   color: $primary !important;
   background: transparent;
   margin-left: 10px;
   border-radius: 5px;
   border: 2px solid $primary;
 }
-.signup a:hover {
+.signup a:hover, .mepr-submit:hover {
   color: white !important;
   background: $primary;
   margin-left: 10px;
@@ -240,4 +240,13 @@ body.admin-bar .search-overlay {
     width: 80%;
     font-size: 3rem;
   }
+}
+
+.mp_wrapper {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.mepr_price_cell {
+  font-weight: bold;
 }
