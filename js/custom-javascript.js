@@ -2,6 +2,7 @@ jQuery(document).ready(function($) {
   class Search {
     // 1. describe and create/initiate our object
     constructor() {
+      this.addSearchHTML();
       this.resultsDiv = $("#search-overlay__results");
       this.openButton = $(".js-search-trigger");
       this.closeButton = $(".search-overlay__close");
@@ -32,7 +33,7 @@ jQuery(document).ready(function($) {
             this.resultsDiv.html('<div class="spinner-loader"></div>');
             this.isSpinnerVisible = true;
           }
-          this.typingTimer = setTimeout(this.getResults.bind(this), 2000);
+          this.typingTimer = setTimeout(this.getResults.bind(this), 750);
         } else {
           this.resultsDiv.html("");
           this.isSpinnerVisible = false;
@@ -42,8 +43,54 @@ jQuery(document).ready(function($) {
     }
 
     getResults() {
-      this.isSpinnerVisible = false;
-      this.resultsDiv.html("Image real search results here...");
+      $.getJSON(
+        `${
+          understrapData.root_url
+        }/wp-json/understrap/v1/search?term=${this.searchField.val()}`,
+        results => {
+          this.resultsDiv.html(`
+          <div class="row">
+            <div class="col">
+              <h2 class="search-overlay__section-title">Recursos</h2>
+              ${
+                results.resources.length
+                  ? '<ul class="link-list min-list">'
+                  : `<p>No existen resultados con esa busqueda. <a href="${
+                      understrapData.root_url
+                    }/">Ver todos los recursos</a></p>`
+              }
+                ${results.resources
+                  .map(
+                    item =>
+                      `<li><a href="${item.permalink}">${item.title}</a> ${
+                        item.postType == "post" ? `by ${item.authorName}` : ""
+                      }</li>`
+                  )
+                  .join("")}
+                  ${results.resources.length ? "</ul>" : ""}
+            </div>
+            <div class="col">
+              <h2 class="search-overlay__section-title">Información General</h2>
+              ${
+                results.generalInfo.length
+                  ? '<ul class="link-list min-list">'
+                  : "<p>No existen resultados con esa busqueda.</p>"
+              }
+                ${results.generalInfo
+                  .map(
+                    item =>
+                      `<li><a href="${item.permalink}">${item.title}</a> ${
+                        item.postType == "post" ? `by ${item.authorName}` : ""
+                      }</li>`
+                  )
+                  .join("")}
+                  ${results.generalInfo.length ? "</ul>" : ""}
+            </div>
+          </div>
+        `);
+          this.isSpinnerVisible = false;
+        }
+      );
     }
 
     keyPressDispatcher(event) {
@@ -61,16 +108,37 @@ jQuery(document).ready(function($) {
     openOverlay(event) {
       this.searchOverlay.addClass("search-overlay--active");
       $("body").addClass("body-no-scroll");
-      this.isOverlayOpen = true;
       if (event && event.type == "click") {
         event.preventDefault();
       }
+      this.searchField.val("");
+      setTimeout(() => this.searchField.focus(), 301);
+      this.isOverlayOpen = true;
     }
 
     closeOverlay() {
       this.searchOverlay.removeClass("search-overlay--active");
       $("body").removeClass("body-no-scroll");
       this.isOverlayOpen = false;
+    }
+
+    addSearchHTML() {
+      $("body").append(`
+      <div class="search-overlay">
+      <div class="search-overlay__top">
+        <div class="container">
+          <i class="fa fa-search search-overlay__icon" aria-hidden="true"></i>
+          <input type="text" class="search-term" placeholder="¿Qué está buscando?" id="search-term">
+          <i class="fa fa-window-close search-overlay__close" aria-hidden="true"></i>
+        </div>
+      </div>
+    
+      <div class="container">
+        <div id="search-overlay__results"></div>
+      </div>
+    
+    </div>
+      `);
     }
   }
 

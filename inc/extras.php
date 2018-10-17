@@ -112,3 +112,13 @@ if ( ! function_exists ( 'understrap_post_nav' ) ) {
 		<?php
 	}
 }
+
+function understrap_custom_rest() {
+	register_rest_field('post', 'authorName', array(
+		'get_callback' => function() {
+			return get_the_author();
+		}
+	));
+}
+
+add_action('rest_api_init', 'understrap_custom_rest');

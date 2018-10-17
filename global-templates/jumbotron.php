@@ -40,7 +40,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
       </div>
       <div class="col-md floating-img-container">
-        <img src="http://recursos-aguilascfc.local/wp-content/uploads/2018/10/Morris_Robert_3_Clear_BG_2.png" alt="" class="floating-img">
+        <img src="http://recursos-aguilascfc.local/wp-content/uploads/2018/10/dads7.png" alt="" class="floating-img">
       </div>
     </div>
   </div>

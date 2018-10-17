@@ -30,6 +30,9 @@ if ( ! function_exists( 'understrap_scripts' ) ) {
 		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 			wp_enqueue_script( 'comment-reply' );
 		}
+		wp_localize_script('understrap-scripts', 'understrapData', array(
+			'root_url' => get_site_url()
+		));
 	}
 } // endif function_exists( 'understrap_scripts' ).
 
