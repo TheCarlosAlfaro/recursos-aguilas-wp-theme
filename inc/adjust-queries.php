@@ -1,8 +1,8 @@
 <?php 
 
 function understrap_adjust_queries($query) {
-  $today = date('Ymd');
   if (!is_admin() AND is_post_type_archive('event') AND $query->is_main_query()) {
+    $today = date('Ymd');
     $query->set('meta_key', 'event_date');
     $query->set('orderby', 'meta_value_num');
     $query->set('order', 'ASC');

@@ -1,6 +1,6 @@
 <?php
 /**
- * The template for displaying event archive.
+ * The template for displaying past event.
  *
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
@@ -32,8 +32,8 @@ $container   = get_theme_mod( 'understrap_container_type' );
 				<?php if ( have_posts() ) : ?>
 
 					<header class="page-header">
-						<h1 class="page-title">Todos Los Eventos</h1>
-						<div class="taxonomy-description">Mira lo que esta pasando en nuestro mundo.</div>
+						<h1 class="page-title">Eventos Pasados</h1>
+						<div class="taxonomy-description">Mira lo que paso en nuestro mundo.</div>
 						<?php
 						// the_archive_title( '<h1 class="page-title">', '</h1>' );
 						// the_archive_description( '<div class="taxonomy-description">', '</div>' );
@@ -41,8 +41,26 @@ $container   = get_theme_mod( 'understrap_container_type' );
 					</header><!-- .page-header -->
 
 					<div class="py-5">
-					<?php /* Start the Loop */ ?>
-					<?php while ( have_posts() ) : the_post(); ?>
+          <?php /* Start the Loop */ 
+            $today = date('Ymd');
+            $pastEvents = new WP_Query(array(
+              'paged' => get_query_var('paged', 1),
+              'post_type' => 'event',
+              'meta_key' => 'event_date',
+              'orderby' => 'meta_value_num',
+              'order' => 'ASC',
+              'meta_query' => array(
+                array(
+                  'key' => 'event_date',
+                  'compare' => '<',
+                  'value' => $today,
+                  'type' => 'numeric'
+                )
+              )
+            ));
+          ?>
+          
+					<?php while ( $pastEvents->have_posts() ) : $pastEvents->the_post(); ?>
             <div class="event-summary">
               <a href="<?php the_permalink() ?>" class="event-summary__date text-center">
                   <span class="event-summary__month"><?php
@@ -85,8 +103,9 @@ $container   = get_theme_mod( 'understrap_container_type' );
 
 			<!-- The pagination component -->
 			<?php understrap_pagination(); ?>
-			<hr>
-			<p>¿Busca los eventos pasados? <a href="<?php echo site_url('/eventos-pasados') ?>">Ver eventos pasados.</a></p>
+      <?php echo paginate_links(array(
+        'total' => $pastEvents->max_num_pages
+      )) ?>
 
 		<!-- Do the right sidebar check -->
 		<?php get_template_part( 'global-templates/right-sidebar-check' ); ?>
