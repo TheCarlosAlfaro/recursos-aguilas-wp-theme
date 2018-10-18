@@ -25,6 +25,7 @@ $understrap_includes = array(
 	'/woocommerce.php',                     // Load WooCommerce functions.
 	'/editor.php',                          // Load Editor functions.
 	'/search-route.php',                    // Loads custom search RESTapi
+	'/adjust-queries',                      // Loads adjust queries for different templates
 );
 
 foreach ( $understrap_includes as $file ) {

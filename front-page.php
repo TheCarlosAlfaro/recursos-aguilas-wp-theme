@@ -18,6 +18,9 @@ $container = get_theme_mod( 'understrap_container_type' );
 <!-- Hero Section/Jumbotron -->
 <?php get_template_part( 'global-templates/jumbotron' ); ?>
 
+<!-- Up coming events Section -->
+<?php get_template_part( 'global-templates/up-coming-events' ); ?>
+
 <!-- Carousel/Slider Section -->
 <section class="py-5">
 
