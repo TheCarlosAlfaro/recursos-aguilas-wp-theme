@@ -47,7 +47,7 @@ $container   = get_theme_mod( 'understrap_container_type' );
                   <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
                   
                     <a href="<?php the_permalink(); ?>" class="link-article">
-                        <?php the_post_thumbnail('large', array('class' => 'img-res shadow text-overlay__image','alt' => get_the_title())); ?>
+                        <?php the_post_thumbnail('medium_large', array('class' => 'img-res shadow text-overlay__image','alt' => get_the_title())); ?>
                     </a>
                     <a href="<?php the_permalink(); ?>" class="link-article">
                       <div class="text-overlay__overlay overlayLeft">
